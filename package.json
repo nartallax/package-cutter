@@ -1,15 +1,16 @@
 {
   "name": "@nartallax/package-cutter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Small tool to throw away stuff from package.json",
   "main": "package-cutter.cjs",
   "bin": {
     "package-cutter": "package-cutter.cjs"
   },
   "scripts": {
-    "build": "npm run build:prepare && npm run build:build && npm run build:copy_static && npm run build:cut_package",
+    "build": "npm run build:prepare && npm run build:build && npm run build:append_shebang && npm run build:copy_static && npm run build:cut_package",
     "build:prepare": "rm -rf ./target && rm -rf ./dist && mkdir ./target",
     "build:build": "./node_modules/.bin/parcel build --target release --no-cache && cp ./dist/package-cutter.js ./target/package-cutter.cjs",
+    "build:append_shebang": "echo \"#!/usr/bin/env node\n\" > ./target/package-cutter.cjs && cat ./dist/package-cutter.js >> ./target/package-cutter.cjs",
     "build:copy_static": "cp ./LICENSE ./target/ && cp ./README.md ./target",
     "build:cut_package": "node ./target/package-cutter.cjs --output ./target/package.json",
     "pub": "npm run build && npm run pub:publish",
