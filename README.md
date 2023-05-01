@@ -1,7 +1,7 @@
 # Package Cutter
 
 This tool can remove some properties from `package.json`.  
-Some of the properties you have in `package.json` are only required for development (like `scripts`, `devDependencies`, `target` if you use [Parcel](https://parceljs.org/)), can grow pretty large and shouldn't actually be present in published package.  
+Some of the properties you have in `package.json` are only required for development (like `scripts`, `devDependencies`, `targets` if you use [Parcel](https://parceljs.org/)), can grow pretty large and shouldn't actually be present in published package.  
 So, if your build process is advanced enough, you probably should throw them away when preparing your release.  
 
 ## Install

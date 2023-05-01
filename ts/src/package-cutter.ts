@@ -8,7 +8,7 @@ interface CliArgs {
 	readonly pretty: boolean
 }
 
-const defaultKeys = "scripts:devDependencies:target"
+const defaultKeys = "scripts:devDependencies:targets"
 
 function displayHelp(): never {
 	let helpStr = `A tool to cut out stuff not important for release from package.json

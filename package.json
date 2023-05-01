@@ -1,7 +1,7 @@
 {
   "name": "@nartallax/package-cutter",
-  "version": "1.0.0",
-  "description": "Small tool to throw away stuff away from package.json",
+  "version": "1.0.1",
+  "description": "Small tool to throw away stuff from package.json",
   "main": "package-cutter.cjs",
   "bin": {
     "package-cutter": "package-cutter.cjs"
