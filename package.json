@@ -1,0 +1,47 @@
+{
+  "name": "@nartallax/package-cutter",
+  "version": "1.0.0",
+  "description": "Small tool to throw away stuff away from package.json",
+  "main": "package-cutter.cjs",
+  "bin": {
+    "package-cutter": "package-cutter.cjs"
+  },
+  "scripts": {
+    "build": "npm run build:prepare && npm run build:build && npm run build:copy_static && npm run build:cut_package",
+    "build:prepare": "rm -rf ./target && rm -rf ./dist && mkdir ./target",
+    "build:build": "./node_modules/.bin/parcel build --target release --no-cache && cp ./dist/package-cutter.js ./target/package-cutter.cjs",
+    "build:copy_static": "cp ./LICENSE ./target/ && cp ./README.md ./target",
+    "build:cut_package": "node ./target/package-cutter.cjs --output ./target/package.json",
+    "pub": "npm run build && npm run pub:publish",
+    "pub:publish": "cd target && npm publish --access public && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nartallax/package-cutter.git"
+  },
+  "author": "Nartallax",
+  "license": "0BSD",
+  "bugs": {
+    "url": "https://github.com/nartallax/package-cutter/issues"
+  },
+  "homepage": "https://github.com/nartallax/package-cutter#readme",
+  "devDependencies": {
+    "@parcel/plugin": "^2.8.3",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "eslint": "^7.30.0",
+    "parcel": "^2.8.3",
+    "parcel-resolver-ts-base-url": "^1.3.1",
+    "typescript": "^5.0.3"
+  },
+  "targets": {
+    "release": {
+      "source": "./ts/src/package-cutter.ts",
+      "context": "node",
+      "optimize": true,
+      "isLibrary": true,
+      "outputFormat": "commonjs"
+    }
+  }
+}
